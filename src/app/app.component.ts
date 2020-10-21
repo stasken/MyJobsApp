@@ -1,6 +1,7 @@
 import { Component, Inject } from "@angular/core";
 import { LOCAL_STORAGE, StorageService } from "ngx-webstorage-service";
 import { environment } from "src/environments/environment";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -10,7 +11,10 @@ import { environment } from "src/environments/environment";
 export class AppComponent {
   title = "MyJobsApp";
   firstTime: Boolean;
-  constructor(@Inject(LOCAL_STORAGE) private storage: StorageService) {
+  constructor(
+    private router: Router,
+    @Inject(LOCAL_STORAGE) private storage: StorageService
+  ) {
     const storage_FirstTime =
       this.storage.get(environment.storage.FIRSTTIME_KEY) || [];
     if (storage_FirstTime !== 1) {
@@ -18,5 +22,10 @@ export class AppComponent {
     } else {
       this.firstTime = false;
     }
+  }
+
+  userHasRead() {
+    this.storage.set(environment.storage.FIRSTTIME_KEY, 1);
+    this.firstTime = false;
   }
 }

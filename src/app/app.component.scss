@@ -1,3 +1,4 @@
+/* WELCOME SCREEN itself */
 #welcome-screen {
   position: relative;
   width: 90vw;
@@ -5,6 +6,15 @@
   margin: auto;
 }
 
+/* CARD TITLE */
+#welcome-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-top: 1.5rem;
+  letter-spacing: 0.8ch;
+}
+
+/* CARD */
 .welcome-card {
   position: absolute;
   top: 0;
@@ -12,17 +22,17 @@
   left: 0;
   right: 0;
   margin: auto;
-  width: 60vw;
-  height: 30vh;
+  padding: 1rem;
+  width: 70vw;
+  height: 70vh;
   display: inline-block;
-  border: 2px solid #333333;
+  border: 2px solid #dadada;
   border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
   letter-spacing: 0.3ch;
-  text-transform: uppercase;
 
   &::before {
     content: '';
-    border: 2px solid #353535;
+    border: 2px solid #ffffff;
     display: block;
     width: 100%;
     height: 100%;
@@ -35,7 +45,6 @@
 
   &::after {
     content: "";
-    opacity: 0.5;
     top: 0;
     left: 0;
     bottom: 0;
@@ -45,7 +54,120 @@
   }
 }
 
+/* CARD TEXT */
 .welcome-card h5,
 p {
   text-align: center;
+}
+
+.welcome-card p {
+  margin-top: 2rem;
+}
+
+/* BUTTON */
+#buttonDiv {
+  position: absolute;
+  top: 65%;
+  left: 40%;
+  right: 0;
+  bottom: 0;
+}
+
+.button {
+  --offset: 10px;
+  --border-size: 2px;
+  display: block;
+  position: relative;
+  padding: 1.5em 3em;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: .25em;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 0;
+  box-shadow: inset 0 0 0 var(--border-size) currentcolor;
+  transition: background .8s ease;
+
+  &:hover {
+    background: rgba(100, 0, 0, .03);
+  }
+
+  &__horizontal,
+  &__vertical {
+    position: absolute;
+    top: var(--horizontal-offset, 0);
+    right: var(--vertical-offset, 0);
+    bottom: var(--horizontal-offset, 0);
+    left: var(--vertical-offset, 0);
+    transition: transform .8s ease;
+    will-change: transform;
+
+    &::before {
+      content: '';
+      position: absolute;
+      border: inherit;
+    }
+  }
+
+  &__horizontal {
+    --vertical-offset: calc(var(--offset) * -1);
+    border-top: var(--border-size) solid currentcolor;
+    border-bottom: var(--border-size) solid currentcolor;
+
+    &::before {
+      top: calc(var(--vertical-offset) - var(--border-size));
+      bottom: calc(var(--vertical-offset) - var(--border-size));
+      left: calc(var(--vertical-offset) * -1);
+      right: calc(var(--vertical-offset) * -1);
+    }
+  }
+
+  &:hover &__horizontal {
+    transform: scaleX(0);
+  }
+
+  &__vertical {
+    --horizontal-offset: calc(var(--offset) * -1);
+    border-left: var(--border-size) solid currentcolor;
+    border-right: var(--border-size) solid currentcolor;
+
+    &::before {
+      top: calc(var(--horizontal-offset) * -1);
+      bottom: calc(var(--horizontal-offset) * -1);
+      left: calc(var(--horizontal-offset) - var(--border-size));
+      right: calc(var(--horizontal-offset) - var(--border-size));
+    }
+  }
+
+  &:hover &__vertical {
+    transform: scaleY(0);
+  }
+
+}
+
+/* ARNO */
+.arno {
+  text-transform: uppercase;
+  letter-spacing: .55em;
+  font-size: 1.2rem;
+  padding-top: 1rem;
+  padding-left: 1.5rem;
+  position: absolute;
+}
+
+/* Media queries */
+@media only screen and (max-width: 1024px) {
+  .welcome-card {
+    width: 90vw;
+    height: 80vh;
+  }
+
+  #buttonDiv {
+    top: 80%;
+    left: 30%
+  }
 }

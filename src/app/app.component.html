@@ -1,12 +1,25 @@
 <div *ngIf="firstTime" id="welcome-screen">
+  <h4 class="arno">ARNO STAS</h4>
   <div class="welcome-card">
-    <h5 class="align-middle">Welkom op MyJobsApp!</h5>
+    <h5 id="welcome-title" class="align-middle">Welkom op MyJobsApp!</h5>
+    <p>My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My
+      text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...</p>
+    <p>My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My
+      text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...</p>
     <p>My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My
       text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...My text lorem ipsum...</p>
   </div>
+  <div id="buttonDiv">
+    <button class="button" (click)="userHasRead()">Ik heb het gelezen!
+      <div class="button__horizontal"></div>
+      <div class="button__vertical"></div>
+    </button>
+  </div>
+
 </div>
 
 <div *ngIf="!firstTime">
+  <h4 class="arno">ARNO STAS</h4>
   <!-- <navbar *ngIf="this.userService.isAuthenticated()" [isConnected]="isConnectionAvailable" [postRequestsAvailable]="!localStorageEmpty"></navbar> -->
   <!---<navbar [isConnected]="isConnectionAvailable" [postRequestsAvailable]="!localStorageEmpty"></navbar>-->
   <navbar></navbar>

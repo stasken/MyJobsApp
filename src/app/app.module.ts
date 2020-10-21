@@ -12,9 +12,10 @@ import { NavbarComponent } from "./navbar/navbar.component";
 
 // Globals
 import { environment } from "src/environments/environment";
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent],
   imports: [
     BrowserModule,
     MatTooltipModule,

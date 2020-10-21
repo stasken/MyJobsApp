@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8 title">
+      <h1>MyJobApplications</h1>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-8 handshake">
+      <i class="fa fa-handshake-o fa-6"></i>
+    </div>
+  </div>
+  <div *ngIf="loggedIn" class="row">
+    <div class="apps col-6">
+      <h3>Applications</h3>
+      <p>No future applications yet. Add job offers and create applications on them. No future applications yet.</p>
+    </div>
+    <div class="col-6">
+
+    </div>
+  </div>
+  <div *ngIf="!loggedIn">
+    <p>login</p>
+  </div>
+
+</div>
