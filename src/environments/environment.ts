@@ -3,7 +3,20 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: "https://localhost:44321/api/",
+
+  storage: {
+    FIRSTTIME_KEY: "firstTime",
+    POSTREQUESTS_KEY: "local_postrequests",
+    SUBSCRIPTION_KEY: "sub_id",
+    AUTH_KEY: "auth_vars",
+    AUTH_TOKEN: "token",
+  },
+  notifications: {
+    VAPID_PUBLIC_KEY:
+      "BMQ1bPCB3GNVTwKy_209sTu3OnOYR31x3RrUeu2CzodG_pRuuxZWuahovYamcGkyZPPKfxXJ5bIc921WUzpa1zo",
+  },
 };
 
 /*
