@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-  <div id="loginform" class="col-11 col-sm-10 col-md-6 col-lg-5 col-xl-4">
+  <div id="loginform" *ngIf="!isFetching" class="col-11 col-sm-10 col-md-6 col-lg-5 col-xl-4">
     <div class="card">
       <div class="card-header">
         <div class="row">
@@ -28,9 +28,11 @@
             <input type="password" name="password" (ngModel)="loginValues.password" required class="form-control"
               id="password" placeholder="Enter password">
           </div>
+          <!--
           <div class="row align-items-center remember">
             <input type="checkbox">Remember Me
           </div>
+          -->
           <div class="form-group">
             <input type="submit" value="Login" class="btn float-right login_btn">
           </div>
@@ -45,6 +47,19 @@
           <a href="#" [routerLink]="['/forgotpassword']" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }">Forgot your password?</a>
         </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isFetching">
+    <app-progress-spinner></app-progress-spinner>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div *ngIf="error" class="col-11 col-sm-10 col-md-6 col-lg-5 col-xl-4">
+    <div class="card" id="errorCard">
+      <div class=" card-body">
+        <h5 class="card-title">Wrong credentials.</h5>
+        <p class="card-text">Please provide the correct email or password.</p>
       </div>
     </div>
   </div>

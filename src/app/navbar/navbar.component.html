@@ -1,11 +1,11 @@
 <div id="navbar">
-  <nav class="navbar navbar-expand-md navbar-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <nav *ngIf="loginService.isAuthenticated()" class="navbar navbar-expand-md navbar-dark">
+    <button id="toggleBtn" class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse"
+      data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+      <ul id="navbarInner" class="navbar-nav ml-auto ">
         <li class="nav-item" matTooltip="You are currently offline." matTooltipClass="tooltips">
           <a class="nav-link"><i class="fa fa-send"></i></a>
         </li>
@@ -13,11 +13,11 @@
           <a class="nav-link"><i class="fa fa-wifi"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/']" routerLinkActive="active"
+          <a class="nav-link" [routerLink]="['/jobs']" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }">JOBS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/']" routerLinkActive="active"
+          <a class="nav-link" [routerLink]="['/applications']" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }">APPLICATIONS</a>
         </li>
         <li class="nav-item">

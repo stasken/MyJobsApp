@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-  <div id="registerform" class="col-11 col-sm-10 col-md-6 col-lg-5 col-xl-4">
+  <div id="registerform" *ngIf="!isFetching" class="col-11 col-sm-10 col-md-6 col-lg-5 col-xl-4">
     <div class="card">
       <div class="card-header">
         <div class="row">
@@ -19,20 +19,29 @@
               <span class="input-group-text"><i class="fa fa-user"></i></span>
             </div>
             <input (ngModel)="registerValues.email" name="email" required id="email" type="text"
-              placeholder="Enter email" class="form-control" />
+              placeholder="Enter email" (keyup)="checkEmail($event)" class="form-control" />
           </div>
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-key"></i></span>
             </div>
             <input type="password" name="password" (ngModel)="registerValues.password" required class="form-control"
-              id="password" placeholder="Enter password">
+              id="password" (keyup)="keyUpPassword($event)" placeholder="Enter password">
           </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-check"></i></span>
+            </div>
+            <input type="password" name="secondPassword" (ngModel)="registerValues.secondPassword" required
+              class="form-control" (keyup)="keyUpPassword($event)" id="secondPassword" placeholder="Validate password">
+          </div>
+          <!--
           <div class="row align-items-center remember">
             <input type="checkbox">Remember Me
           </div>
+          -->
           <div class="form-group">
-            <input type="submit" value="Login" class="btn float-right login_btn">
+            <input type="submit" value="Register" class="btn float-right login_btn">
           </div>
         </form>
       </div>
@@ -47,5 +56,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div *ngIf="isFetching">
+    <app-progress-spinner></app-progress-spinner>
   </div>
 </div>

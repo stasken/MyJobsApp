@@ -11,6 +11,9 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   loginValues: any;
+  isFetching: boolean = false;
+  error: boolean = false;
+
   constructor(
     private router: Router,
     @Inject(LOCAL_STORAGE) private storage: StorageService,
@@ -20,21 +23,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(formValues) {
-    this.loginService
-      .logIn(formValues.email, formValues.password)
-      .subscribe((response) => {
-        this.storage.get(environment.storage.AUTH_TOKEN) || [];
+    this.loginService.logIn(formValues.email, formValues.password).subscribe(
+      (response) => {
+        this.storage.set(environment.storage.AUTH_TOKEN, response.token);
+        this.router.navigate([""]);
         console.log(response);
-      });
+        this.isFetching = false;
+      },
+      (error) => {
+        this.isFetching = false;
+        this.error = true;
+      }
+    );
+    this.isFetching = true;
   }
-  register(formValues) {
-    this.loginService
-      .register(formValues.email, formValues.password)
-      .subscribe((response) => {
-        console.log(response);
-      });
-  }
-
   gotoregister() {
     this.router.navigate(["register"]);
   }

@@ -7,6 +7,7 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FormsModule } from "@angular/forms";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 // Components
 import { AppComponent } from "./app.component";
@@ -16,10 +17,26 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { environment } from "src/environments/environment";
 import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./login/login.component";
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from "./register/register.component";
+import { ErrorComponent } from "./error/error.component";
+import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
+import { ProgressSpinnerComponent } from "./progress-spinner/progress-spinner.component";
+import { JobsComponent } from './jobs/jobs.component';
+import { ApplicationsComponent } from './applications/applications.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, LoginComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    ErrorComponent,
+    ForgotPasswordComponent,
+    ProgressSpinnerComponent,
+    JobsComponent,
+    ApplicationsComponent,
+  ],
   imports: [
     BrowserModule,
     MatTooltipModule,
@@ -28,6 +45,7 @@ import { RegisterComponent } from './register/register.component';
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
+    MatProgressSpinnerModule,
     ServiceWorkerModule.register("my-service-worker.js", {
       enabled: environment.production,
     }),

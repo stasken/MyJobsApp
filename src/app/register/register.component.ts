@@ -11,6 +11,9 @@ import { environment } from "src/environments/environment";
 })
 export class RegisterComponent implements OnInit {
   registerValues: any;
+  isFetching: boolean = false;
+  wrongPassword: boolean = false;
+
   constructor(
     private router: Router,
     @Inject(LOCAL_STORAGE) private storage: StorageService,
@@ -18,26 +21,33 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
-
-  login(formValues) {
-    this.loginService
-      .register(formValues.email, formValues.password)
-      .subscribe((response) => {
-        this.storage.set(environment.storage.AUTH_TOKEN, response.token);
-        console.log(response);
-      });
-  }
   register(formValues) {
-    this.loginService
-      .register(formValues.email, formValues.password)
-      .subscribe((response) => {
-        console.log(response);
-      });
+    if (formValues.secondPassword !== formValues.password) {
+      this.wrongPassword = true;
+    } else {
+      this.loginService
+        .register(formValues.email, formValues.password)
+        .subscribe((response) => {
+          console.log(response);
+          this.isFetching = false;
+          this.router.navigate(["login"]);
+        });
+      this.isFetching = true;
+    }
+  }
+
+  checkEmail($event) {
+    this.wrongPassword = true;
+  }
+
+  keyUpPassword($event) {
+    this.wrongPassword = true;
   }
 
   gotologin() {
     this.router.navigate(["login"]);
   }
+
   gotoforgotpassword() {
     this.router.navigate(["forgotpassword"]);
   }

@@ -2,8 +2,8 @@ import { Injectable, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { LOCAL_STORAGE, StorageService } from "ngx-webstorage-service";
-import { Observable, throwError } from "rxjs";
-import { retry, catchError } from "rxjs/operators";
+import { Observable, throwError, BehaviorSubject, from } from "rxjs";
+import { retry, catchError, map } from "rxjs/operators";
 import { User } from "./user.model";
 
 @Injectable({
@@ -11,6 +11,7 @@ import { User } from "./user.model";
 })
 export class LoginService {
   public myApiUrl: string;
+  private _user = new BehaviorSubject<User>(null);
 
   constructor(
     private http: HttpClient,
@@ -18,6 +19,22 @@ export class LoginService {
   ) {
     this.myApiUrl = environment.apiUrl;
   }
+
+  get token() {
+    return this._user.asObservable().pipe(
+      map((user) => {
+        if (user) {
+          return this.storage.get(environment.storage.AUTH_TOKEN);
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
+  /**
+   * Auth calls
+   */
 
   /**
    * Service calls
@@ -54,6 +71,10 @@ export class LoginService {
 
   public logOut() {
     this.storage.remove(environment.storage.AUTH_TOKEN);
+  }
+
+  public forgotpassword(formValues) {
+    console.log(formValues);
   }
 
   /**

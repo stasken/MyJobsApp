@@ -3,12 +3,34 @@ import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
+import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { AuthGuard } from "./login/auth.guard";
+import { JobsComponent } from "./jobs/jobs.component";
+import { ApplicationsComponent } from "./applications/applications.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [AuthGuard] },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
+  { path: "jobs", component: JobsComponent, canActivate: [AuthGuard] },
+  {
+    path: "applications",
+    component: ApplicationsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "login",
+    component: LoginComponent,
+    data: { animation: "LoginPage" },
+  },
+  {
+    path: "register",
+    component: RegisterComponent,
+    data: { animation: "RegisterPage" },
+  },
+  {
+    path: "forgotpassword",
+    component: ForgotPasswordComponent,
+    data: { animation: "ForgotPasswordPage" },
+  },
   { path: "**", redirectTo: "login", pathMatch: "full" },
 ];
 

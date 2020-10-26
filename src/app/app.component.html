@@ -24,7 +24,7 @@
   <!---<navbar [isConnected]="isConnectionAvailable" [postRequestsAvailable]="!localStorageEmpty"></navbar>-->
   <navbar></navbar>
   <!-- Home / events... -->
-  <section>
-    <router-outlet></router-outlet>
-  </section>
+  <div [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
 </div>

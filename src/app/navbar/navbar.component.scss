@@ -86,15 +86,14 @@ nav.navbar ul li a:hover:after {
   width: 100%;
 }
 
+#toggleBtn {
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
 
 /* Media queries */
 @media only screen and (max-width: 1024px) {
-  .nav-link {
-    font-size: 1.4rem !important;
-    text-align: center;
-    margin: 0 auto;
-  }
-
   .leftIcons {
     margin-left: 2.2rem;
   }
@@ -103,12 +102,38 @@ nav.navbar ul li a:hover:after {
     margin-right: 1.5rem;
     ;
   }
+
+  #navbarInner {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    padding: 0.3rem;
+    border-radius: 0.50rem;
+  }
+
+  nav ul li a:hover {
+    color: #0772ff !important;
+  }
+
+  a.nav-link {
+    color: white !important;
+    cursor: pointer;
+  }
 }
 
-/* Logo padding left */
-@media only screen and (max-width: 612px) {
+@media only screen and (max-width: 767px) {
   #navbar {
     padding-left: 0;
-    margin-top: 0;
+  }
+
+  nav.navbar ul li a:hover:after {
+    width: 50%;
+  }
+
+  #navbarInner {
+    border: 1px solid whitesmoke;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    text-align: center;
   }
 }
