@@ -60,3 +60,22 @@ input:focus {
 .links a {
   margin-left: 4px;
 }
+
+.wrongEmail {
+  border: 1px solid red
+}
+
+/* ERROR */
+
+#errorCard {
+  border: 1px solid red;
+}
+
+.bg {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+#errorDiv {
+  text-align: center;
+  margin: 0 auto;
+}

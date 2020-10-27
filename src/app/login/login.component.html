@@ -7,8 +7,10 @@
             <h3>Sign In</h3>
           </div>
           <div class="col-6 d-flex justify-content-end social_icon">
-            <span><i class="fa fa-facebook-square"></i></span>
+            <span><a href="#" (click)="fbLogin()"><i class="fa fa-facebook-square"></i></a></span>
+            <!--
             <span><i class="fa fa-google-plus-square"></i></span>
+            -->
           </div>
         </div>
       </div>
@@ -59,7 +61,7 @@
     <div class="card" id="errorCard">
       <div class=" card-body">
         <h5 class="card-title">Wrong credentials.</h5>
-        <p class="card-text">Please provide the correct email or password.</p>
+        <p class="card-text">Please provide the correct email and password.</p>
       </div>
     </div>
   </div>

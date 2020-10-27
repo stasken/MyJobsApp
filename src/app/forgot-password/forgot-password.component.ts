@@ -13,6 +13,7 @@ export class ForgotPasswordComponent implements OnInit {
   isFetching: boolean = false;
   emailSent: boolean = false;
   wrongPassword: boolean = false;
+  wrongEmail: boolean = false;
 
   constructor(
     private router: Router,
@@ -28,14 +29,20 @@ export class ForgotPasswordComponent implements OnInit {
       console.log(response);
       this.isFetching = false;
       this.emailSent = true;
-    });
+    },
+          (error) => {
+            this.error = true;
+            this.isFetching = false;
+          });
     this.isFetching = true;
     */
     this.emailSent = true;
   }
 
-  checkEmail($event) {
-    this.wrongPassword = true;
+  checkEmail(event) {
+    const email = event.target.value;
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    this.wrongEmail = !re.test(email);
   }
 
   gotologin() {

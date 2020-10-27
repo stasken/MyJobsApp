@@ -37,6 +37,22 @@ export class LoginComponent implements OnInit {
     );
     this.isFetching = true;
   }
+
+  fbLogin() {
+    /*
+    this.loginService.loginFacebook().subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    */
+  }
+
+  checkEmail($event) {}
+
   gotoregister() {
     this.router.navigate(["register"]);
   }

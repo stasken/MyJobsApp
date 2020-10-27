@@ -13,6 +13,9 @@ export class RegisterComponent implements OnInit {
   registerValues: any;
   isFetching: boolean = false;
   wrongPassword: boolean = false;
+  wrongSamePassword: boolean = false;
+  wrongEmail: boolean = false;
+  error: boolean = false;
 
   constructor(
     private router: Router,
@@ -22,26 +25,50 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
   register(formValues) {
-    if (formValues.secondPassword !== formValues.password) {
-      this.wrongPassword = true;
+    console.log(formValues);
+    if (
+      formValues.secondPassword !== formValues.password ||
+      formValues.password == null
+    ) {
+      if (formValues.email == null) {
+        this.wrongEmail = true;
+      }
+      this.wrongSamePassword = true;
+      this.error = true;
+    } else if (formValues.email == null) {
+      this.wrongEmail = true;
+      this.error = true;
     } else {
       this.loginService
         .register(formValues.email, formValues.password)
-        .subscribe((response) => {
-          console.log(response);
-          this.isFetching = false;
-          this.router.navigate(["login"]);
-        });
+        .subscribe(
+          (response) => {
+            console.log(response);
+            this.isFetching = false;
+            this.router.navigate(["login"]);
+          },
+          (error) => {
+            this.error = true;
+            this.isFetching = false;
+          }
+        );
       this.isFetching = true;
     }
   }
 
-  checkEmail($event) {
-    this.wrongPassword = true;
+  checkEmail(event: any) {
+    this.wrongEmail = true;
+    const email = event.target.value;
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    this.wrongEmail = !re.test(email);
   }
 
-  keyUpPassword($event) {
-    this.wrongPassword = true;
+  keyUpPassword(event: any) {
+    var regexp = new RegExp(
+      "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^_&*])(?=.{8,})"
+    );
+    const pass = event.target.value;
+    this.wrongPassword = !regexp.test(pass);
   }
 
   gotologin() {

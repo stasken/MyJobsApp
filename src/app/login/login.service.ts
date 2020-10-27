@@ -35,6 +35,11 @@ export class LoginService {
   /**
    * Auth calls
    */
+  public loginFacebook() {
+    return this.http
+      .get(this.myApiUrl + "signin-facebook")
+      .pipe(retry(1), catchError(this.errorHandler));
+  }
 
   /**
    * Service calls

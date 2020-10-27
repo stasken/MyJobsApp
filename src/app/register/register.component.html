@@ -18,15 +18,16 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-user"></i></span>
             </div>
-            <input (ngModel)="registerValues.email" name="email" required id="email" type="text"
-              placeholder="Enter email" (keyup)="checkEmail($event)" class="form-control" />
+            <input (ngModel)="registerValues.email" [ngClass]="{ 'wrongEmail': wrongEmail }" name="email" required
+              id="email" type="text" placeholder="Enter email" (keyup)="checkEmail($event)" class="form-control" />
           </div>
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-key"></i></span>
             </div>
-            <input type="password" name="password" (ngModel)="registerValues.password" required class="form-control"
-              id="password" (keyup)="keyUpPassword($event)" placeholder="Enter password">
+            <input type="password" name="password" [ngClass]="{ 'wrongEmail': wrongPassword }"
+              (ngModel)="registerValues.password" required class="form-control" id="password"
+              (keyup)="keyUpPassword($event)" placeholder="Enter password">
           </div>
           <div class="input-group form-group">
             <div class="input-group-prepend">
@@ -41,7 +42,8 @@
           </div>
           -->
           <div class="form-group">
-            <input type="submit" value="Register" class="btn float-right login_btn">
+            <input [disabled]="wrongEmail || wrongPassword" type="submit" value="Register"
+              class="btn float-right login_btn">
           </div>
         </form>
       </div>
@@ -59,5 +61,16 @@
   </div>
   <div *ngIf="isFetching">
     <app-progress-spinner></app-progress-spinner>
+  </div>
+</div>
+<div id="errorDiv" *ngIf="error" class="col-11 col-sm-10 col-md-6 col-lg-5 col-xl-4">
+  <div class="card" id="errorCard">
+    <div class=" card-body">
+      <h5 class="card-title">Wrong credentials.</h5>
+      <p class="card-text">Please provide <span *ngIf="wrongEmail">the correct </span><span *ngIf="wrongEmail">
+          email</span><span *ngIf="wrongEmail && wrongSamePassword"> and </span> <span *ngIf="wrongSamePassword">the
+          same
+          password</span>.</p>
+    </div>
   </div>
 </div>
