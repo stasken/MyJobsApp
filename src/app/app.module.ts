@@ -21,8 +21,13 @@ import { RegisterComponent } from "./register/register.component";
 import { ErrorComponent } from "./error/error.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { ProgressSpinnerComponent } from "./progress-spinner/progress-spinner.component";
-import { JobsComponent } from './jobs/jobs.component';
-import { ApplicationsComponent } from './applications/applications.component';
+import { JobsComponent } from "./jobs/jobs.component";
+import { ApplicationsComponent } from "./applications/applications.component";
+import { JobsService } from "./jobs/jobs-service.service";
+import { LoginService } from "./login/login.service";
+import { AddJobComponent } from "./jobs/add-job/add-job.component";
+import { AddApplicationComponent } from "./jobs/applications/add-application/add-application.component";
+import { ApplicationsService } from "./jobs/applications/applications.service";
 
 @NgModule({
   declarations: [
@@ -36,6 +41,8 @@ import { ApplicationsComponent } from './applications/applications.component';
     ProgressSpinnerComponent,
     JobsComponent,
     ApplicationsComponent,
+    AddJobComponent,
+    AddApplicationComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +57,7 @@ import { ApplicationsComponent } from './applications/applications.component';
       enabled: environment.production,
     }),
   ],
-  providers: [],
+  providers: [LoginService, JobsService, ApplicationsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

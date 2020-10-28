@@ -1,0 +1,85 @@
+<div class="row justify-content-center">
+  <div *ngIf="inputError || userError || descriptionError" class="col-11 col-sm-10 col-md-6 col-lg-5 col-xl-4">
+    <div class="card" id="errorDiv">
+      <div class=" card-body" id="errorCard">
+        <h5 class="card-title">Error</h5>
+        <p *ngIf="inputError" class="card-text">Please fill in everything.</p>
+        <p *ngIf="userError" class="card-text">Please log in.</p>
+        <p *ngIf="descriptionError" class="card-text">Please give a description of max 200 characters.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div id="addJobForm" class="col-11 col-sm-10 col-md-8 col-lg-7 col-xl-6">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-12">
+            <h3>Add new job</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <form #addJobForm="ngForm" (ngSubmit)="addJob(addJobForm.value)">
+          <!--Company-->
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Company</span>
+            </div>
+            <input (ngModel)="newJobValues.company" name="company" required id="company" type="text"
+              placeholder="Enter company name" class="form-control" />
+          </div>
+          <!--Function-->
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Function</span>
+            </div>
+            <input (ngModel)="newJobValues.function" name="function" required id="function" type="text"
+              placeholder="Enter function" class="form-control" />
+
+          </div>
+          <!--Technologies/Skills-->
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Skills</span>
+            </div>
+            <input (ngModel)="newJobValues.technologies" name="technologies" required id="technologies" type="text"
+              placeholder="Enter required technologies or skills" class="form-control" />
+          </div>
+          <!--Description-->
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Decription</span>
+            </div>
+            <textarea (ngModel)="newJobValues.description" name="description" required id="description" type="text"
+              placeholder="Enter a description of max 200 characters" (keyup)="checkLength($event)"
+              class="form-control"></textarea>
+          </div>
+          <!--Address-->
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Address</span>
+            </div>
+            <input (ngModel)="newJobValues.address" name="address" required id="address" type="text"
+              placeholder="Enter company address" class="form-control" />
+          </div>
+          <!--Website-->
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Website</span>
+            </div>
+            <input (ngModel)="newJobValues.website" name="website" required id="website" type="text"
+              placeholder="Enter company website" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Submit" class="btn float-right login_btn">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isLoading">
+  <app-progress-spinner></app-progress-spinner>
+</div>

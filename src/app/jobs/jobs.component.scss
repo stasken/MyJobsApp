@@ -1,0 +1,26 @@
+#myjobs h1 {}
+
+.card {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.card h1,
+h4,
+p,
+div {
+  color: black
+}
+
+.card-block {
+  color: #848484;
+  padding: 0.3rem;
+}
+
+.card-text {
+  padding: 0.5rem 0;
+}
+
+.card-footer {
+  bottom: 0;
+}

@@ -12,6 +12,7 @@ export const environment = {
     SUBSCRIPTION_KEY: "sub_id",
     AUTH_KEY: "auth_vars",
     AUTH_TOKEN: "token",
+    AUTH_EMAIL: "email",
   },
   notifications: {
     VAPID_PUBLIC_KEY:

@@ -7,13 +7,29 @@ import { ForgotPasswordComponent } from "./forgot-password/forgot-password.compo
 import { AuthGuard } from "./login/auth.guard";
 import { JobsComponent } from "./jobs/jobs.component";
 import { ApplicationsComponent } from "./applications/applications.component";
+import { AddJobComponent } from "./jobs/add-job/add-job.component";
+import { AddApplicationComponent } from "./jobs/applications/add-application/add-application.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [AuthGuard] },
-  { path: "jobs", component: JobsComponent, canActivate: [AuthGuard] },
+  {
+    path: "jobs",
+    component: JobsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "jobs/add",
+    component: AddJobComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: "applications",
     component: ApplicationsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "applications/add",
+    component: AddApplicationComponent,
     canActivate: [AuthGuard],
   },
   {

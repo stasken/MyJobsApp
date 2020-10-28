@@ -54,6 +54,7 @@ export class NavbarComponent implements OnInit {
     //const googleAuth = gapi.auth2.getAuthInstance();
     //googleAuth.signOut();
     this.loginService.logOut();
+    this.storage.remove(environment.storage.AUTH_TOKEN);
     this.router.navigate(["login"]);
   }
 

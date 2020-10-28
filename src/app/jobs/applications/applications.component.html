@@ -1,0 +1,39 @@
+<div class="container">
+  <div id="myjobs" class="row">
+    <div class="col-6">
+      <h1>My Applicationss</h1>
+    </div>
+    <div class="col-6">
+      <button class="btn btn-primary" [routerLink]="['/jobs/add']" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"><i class="fa fa-plus"></i> Add job</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-11 col-sm-10 col-md-6 col-lg-6" *ngFor="let job of jobs" (click)="onSelect(job)">
+      <div class="card h-100">
+        <h6 class="card-title">{{application.job.technologies}}</h6>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <p class="card-text">
+            {{application.when}}
+          </p>
+        </div>
+        <div class="col-12">
+          <p class="card-block">
+            {{application.where}}
+          </p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-6">
+          </div>
+          <div class="col-6">
+            <button class="btn btn-danger float-right" (click)="deleteApplication(application.id)">Remove
+              application</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

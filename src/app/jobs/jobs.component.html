@@ -1,1 +1,42 @@
-<p>jobs works!</p>
+<div class="container">
+  <div id="myjobs" class="row">
+    <div class="col-6">
+      <h1>My Jobs</h1>
+    </div>
+    <div class="col-6">
+      <button class="btn btn-primary" [routerLink]="['/jobs/add']" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"><i class="fa fa-plus"></i> Add job</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-11 col-sm-10 col-md-6 col-lg-6" *ngFor="let job of jobs" (click)="onSelect(job)">
+      <div class="card h-100">
+        <div class="card-header">
+          <h3 class="card-title">{{job.companyName}}</h3>
+          <h5 class="card-title">{{job.function}}</h5>
+          <h6 class="card-title">Skills: {{job.technologies}}</h6>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <p class="card-text">
+              {{job.description}}
+            </p>
+          </div>
+          <div class="col-12">
+            <p class="card-block">
+              {{job.companyAddress}}
+            </p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-6">
+              <button class="btn btn-success float-left" (click)="addApplication(job)">New job application</button>
+            </div>
+            <div class="col-6">
+              <button class="btn btn-danger float-right" (click)="deleteJob(job.id)">Remove job</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

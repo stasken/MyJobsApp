@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { LOCAL_STORAGE, StorageService } from "ngx-webstorage-service";
 import { Observable, throwError, BehaviorSubject, from } from "rxjs";
-import { retry, catchError, map } from "rxjs/operators";
+import { retry, catchError, map, tap } from "rxjs/operators";
 import { User } from "./user.model";
 
 @Injectable({
@@ -11,39 +11,6 @@ import { User } from "./user.model";
 })
 export class LoginService {
   public myApiUrl: string;
-  private _user = new BehaviorSubject<User>(null);
-
-  constructor(
-    private http: HttpClient,
-    @Inject(LOCAL_STORAGE) private storage: StorageService
-  ) {
-    this.myApiUrl = environment.apiUrl;
-  }
-
-  get token() {
-    return this._user.asObservable().pipe(
-      map((user) => {
-        if (user) {
-          return this.storage.get(environment.storage.AUTH_TOKEN);
-        } else {
-          return null;
-        }
-      })
-    );
-  }
-
-  /**
-   * Auth calls
-   */
-  public loginFacebook() {
-    return this.http
-      .get(this.myApiUrl + "signin-facebook")
-      .pipe(retry(1), catchError(this.errorHandler));
-  }
-
-  /**
-   * Service calls
-   */
 
   public isAuthenticated(): boolean {
     const currentTokenStorage =
@@ -52,6 +19,33 @@ export class LoginService {
       return false;
     }
     return true;
+  }
+
+  constructor(
+    private http: HttpClient,
+    @Inject(LOCAL_STORAGE) private storage: StorageService
+  ) {
+    this.myApiUrl = environment.apiUrl;
+  }
+
+  /**
+   * Auth calls
+   */
+  public loginFacebook() {
+    const obj = {
+      client_id: "364638531321666",
+      redirect_uri: "https://www.facebook.com/connect/login_success.html",
+      state: "",
+    };
+    return this.http
+      .post("https://www.facebook.com/v8.0/dialog/oauth?", obj)
+      .pipe(retry(1), catchError(this.errorHandler));
+  }
+
+  public getUserByEmail(email: string): Observable<User> {
+    return this.http
+      .get<User>(this.myApiUrl + "users/email/" + email)
+      .pipe(retry(1), catchError(this.errorHandler));
   }
 
   public logIn(email: string, password: string): Observable<User> {
@@ -76,6 +70,7 @@ export class LoginService {
 
   public logOut() {
     this.storage.remove(environment.storage.AUTH_TOKEN);
+    this.storage.remove(environment.storage.AUTH_EMAIL);
   }
 
   public forgotpassword(formValues) {
@@ -85,6 +80,7 @@ export class LoginService {
   /**
    * Helper methods
    */
+
   public errorHandler(error) {
     let errorMessage = "";
     if (error.error instanceof ErrorEvent) {
