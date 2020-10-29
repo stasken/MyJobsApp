@@ -86,6 +86,11 @@ nav.navbar ul li a:hover:after {
   width: 100%;
 }
 
+.navbar-toggler {
+  background: rgba(0, 0, 0, 0.8) !important;
+  border-color: rgba(0, 0, 0) !important;
+}
+
 #toggleBtn {
   margin: 0 auto;
   margin-bottom: 1.5rem;
