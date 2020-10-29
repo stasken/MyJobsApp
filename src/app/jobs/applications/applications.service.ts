@@ -37,7 +37,7 @@ export class ApplicationsService {
 
   public deleteApplication(id: number): Observable<Application> {
     return this.http
-      .delete<Application>(this.myApiUrl + "application/" + id, {
+      .delete<Application>(this.myApiUrl + "applications/" + id, {
         headers: new HttpHeaders({
           Authorization:
             "Bearer " + this.storage.get(environment.storage.AUTH_TOKEN),
@@ -48,7 +48,7 @@ export class ApplicationsService {
 
   public getApplicationsOfUser(id: string): Observable<Application[]> {
     return this.http
-      .get<Application[]>(this.myApiUrl + "application/user/" + id, {
+      .get<Application[]>(this.myApiUrl + "applications/user/" + id, {
         headers: new HttpHeaders({
           Authorization:
             "Bearer " + this.storage.get(environment.storage.AUTH_TOKEN),

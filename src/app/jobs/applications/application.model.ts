@@ -3,8 +3,8 @@ import { Job } from "../job.model";
 export class Application {
   id: number;
   where: string;
-  when: string;
+  when: Date;
   offer_Id: number;
-  User_Id: string;
+  user_Id: string;
   offer: Job;
 }

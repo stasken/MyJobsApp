@@ -7,6 +7,7 @@ import { LOCAL_STORAGE, StorageService } from "ngx-webstorage-service";
 import { environment } from "src/environments/environment";
 import { Application } from "../application.model";
 import { ApplicationsService } from "../applications.service";
+import { mergeMap } from "rxjs/operators";
 
 @Component({
   selector: "app-add-application",
@@ -15,6 +16,7 @@ import { ApplicationsService } from "../applications.service";
 })
 export class AddApplicationComponent implements OnInit {
   job: Job;
+  date: Date;
 
   constructor(
     private loginService: LoginService,
@@ -30,8 +32,12 @@ export class AddApplicationComponent implements OnInit {
   error: boolean = false;
   newAppValues: any;
 
+  updateNewDate(event) {
+    this.date = event;
+  }
+
   addApp(formValues) {
-    if (formValues.where.length <= 0 || formValues.when.length <= 0) {
+    if (formValues.where.length <= 0) {
       this.error = true;
       return;
     }
@@ -40,15 +46,17 @@ export class AddApplicationComponent implements OnInit {
       .subscribe(
         (res) => {
           const appl = new Application();
-          appl.where = formValues.address;
-          appl.when = formValues.website;
+          appl.where = formValues.where;
+          appl.when = this.date;
           appl.offer_Id = this.job.id;
+          appl.user_Id = res.id;
           this.applicationsService.addNewApplication(appl).subscribe(
             (response) => {
               this.isLoading = false;
               this.router.navigate([""]);
             },
             (error) => {
+              this.isLoading = false;
               this.error = true;
             }
           );

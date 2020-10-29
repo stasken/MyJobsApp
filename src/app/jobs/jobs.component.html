@@ -1,42 +1,74 @@
 <div class="container">
   <div id="myjobs" class="row">
-    <div class="col-6">
+    <div class="col-8 col-sm-6">
       <h1>My Jobs</h1>
     </div>
-    <div class="col-6">
-      <button class="btn btn-primary" [routerLink]="['/jobs/add']" routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"><i class="fa fa-plus"></i> Add job</button>
+    <div class="col-4 col-sm-6">
+      <button
+        class="addBtn btn"
+        [routerLink]="['/jobs/add']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="fa fa-plus"></i> Add job
+      </button>
     </div>
   </div>
-  <div class="row">
-    <div class="col-11 col-sm-10 col-md-6 col-lg-6" *ngFor="let job of jobs" (click)="onSelect(job)">
-      <div class="card h-100">
+  <div class="row justify-content-center justify-content-md-start">
+    <div
+      class="col-12 col-sm-11 col-md-6"
+      *ngFor="let job of jobs"
+      (click)="onSelect(job)"
+    >
+      <div class="card">
         <div class="card-header">
-          <h3 class="card-title">{{job.companyName}}</h3>
-          <h5 class="card-title">{{job.function}}</h5>
-          <h6 class="card-title">Skills: {{job.technologies}}</h6>
+          <h3 class="card-title">
+            <strong>{{ job.companyName }}</strong>
+          </h3>
+          <h5 class="card-title">{{ job.function }}</h5>
+          <h6 class="card-title">
+            <strong>Skills:</strong> {{ job.technologies }}
+          </h6>
         </div>
         <div class="row">
           <div class="col-12">
-            <p class="card-text">
-              {{job.description}}
-            </p>
+            <ng-scrollbar
+              #scrollable
+              track="all"
+              pointerEventsMethod="scrollbar"
+            >
+              <p class="card-text" style="height: 7rem">
+                {{ job.description }}
+              </p>
+            </ng-scrollbar>
           </div>
           <div class="col-12">
             <p class="card-block">
-              {{job.companyAddress}}
+              {{ job.companyAddress }}
             </p>
           </div>
         </div>
         <div class="card-footer">
           <div class="row">
             <div class="col-6">
-              <button class="btn btn-success float-left" (click)="addApplication(job)">New job application</button>
+              <button
+                class="btn btn-success float-left"
+                (click)="addApplication(job)"
+              >
+                New job application
+              </button>
             </div>
             <div class="col-6">
-              <button class="btn btn-danger float-right" (click)="deleteJob(job.id)">Remove job</button>
+              <button
+                class="btn btn-danger float-right"
+                (click)="deleteJob(job.id)"
+              >
+                Remove job
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+#datetime {
+  padding-left: 85%;
+}
+
+#datetime mat-datepicker-toggle {
+  color: white
+}
+
+@media only screen and (max-width: 1007px) {
+  #datetime {
+    padding-left: 70%;
+  }
+}
+
+@media only screen and (max-width: 877px) {
+  #datetime {
+    padding-left: 60%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #datetime {
+    padding-left: 50%;
+  }
+}
+
+@media only screen and (max-width: 567px) {
+  #datetime {
+    padding-left: 40%;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  #datetime {
+    padding-left: 0.1rem;
+  }
+}

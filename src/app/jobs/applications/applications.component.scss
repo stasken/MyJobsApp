@@ -1,0 +1,15 @@
+.card {
+  background: rgb(0, 0, 0, 0.8);
+}
+
+.card-title {
+  text-align: center;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.card-text,
+.card-block,
+.card-footer {
+  text-align: center;
+  margin: 0.2rem 0rem;
+}

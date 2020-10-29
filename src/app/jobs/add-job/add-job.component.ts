@@ -29,8 +29,6 @@ export class AddJobComponent implements OnInit {
 
   checkLength(event) {
     const descr = event.target.value;
-    console.log(descr);
-    console.log(descr.length);
     if (descr.length > 200) {
       this.descriptionError = true;
     } else {
@@ -61,11 +59,13 @@ export class AddJobComponent implements OnInit {
               this.router.navigate(["jobs"]);
             },
             (error) => {
+              this.isLoading = false;
               this.inputError = true;
             }
           );
         },
         (err) => {
+          this.isLoading = false;
           this.userError = true;
         }
       );

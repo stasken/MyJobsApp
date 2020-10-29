@@ -8,6 +8,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FormsModule } from "@angular/forms";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
+import { MatInputModule } from "@angular/material/input";
+import { NgScrollbarModule, NG_SCROLLBAR_OPTIONS } from "ngx-scrollbar";
 
 // Components
 import { AppComponent } from "./app.component";
@@ -22,12 +28,13 @@ import { ErrorComponent } from "./error/error.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { ProgressSpinnerComponent } from "./progress-spinner/progress-spinner.component";
 import { JobsComponent } from "./jobs/jobs.component";
-import { ApplicationsComponent } from "./applications/applications.component";
+import { ApplicationsComponent } from "./jobs/applications/applications.component";
 import { JobsService } from "./jobs/jobs-service.service";
 import { LoginService } from "./login/login.service";
 import { AddJobComponent } from "./jobs/add-job/add-job.component";
 import { AddApplicationComponent } from "./jobs/applications/add-application/add-application.component";
 import { ApplicationsService } from "./jobs/applications/applications.service";
+import { DatetimepickerComponent } from "./jobs/applications/datetimepicker/datetimepicker.component";
 
 @NgModule({
   declarations: [
@@ -43,6 +50,7 @@ import { ApplicationsService } from "./jobs/applications/applications.service";
     ApplicationsComponent,
     AddJobComponent,
     AddApplicationComponent,
+    DatetimepickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,13 +59,25 @@ import { ApplicationsService } from "./jobs/applications/applications.service";
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatInputModule,
     AppRoutingModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    NgScrollbarModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
     MatProgressSpinnerModule,
     ServiceWorkerModule.register("my-service-worker.js", {
       enabled: environment.production,
     }),
   ],
-  providers: [LoginService, JobsService, ApplicationsService],
+  providers: [
+    LoginService,
+    JobsService,
+    ApplicationsService,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

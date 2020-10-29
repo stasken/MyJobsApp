@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div *ngIf="error" class="col-11 col-sm-10 col-md-6 col-lg-5 col-xl-4">
     <div class="card" id="errorDiv">
-      <div class=" card-body" id="errorCard">
+      <div class="card-body" id="errorCard">
         <h5 class="card-title">Error</h5>
         <p *ngIf="error" class="card-text">Please fill in everything.</p>
       </div>
@@ -14,7 +14,7 @@
       <div class="card-header">
         <div class="row">
           <div class="col-12">
-            <h3>Add new application for {{job.companyName}}</h3>
+            <h3>Add new application for {{ job.companyName }}</h3>
           </div>
         </div>
       </div>
@@ -25,7 +25,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text">Where?</span>
             </div>
-            <input (ngModel)="newAppValues.where" name="where" required id="where" type="text"
+            <input (ngModel)="(newAppValues.where)" name="where" required id="where" type="text"
               placeholder="Physical address, Microsoft Teams url, Cisco Webex,..." class="form-control" />
           </div>
           <!--When-->
@@ -33,11 +33,11 @@
             <div class="input-group-prepend">
               <span class="input-group-text">When? <i class="fa fa-clock"></i></span>
             </div>
-            <input (ngModel)="newAppValues.when" name="when" required id="when" type="text"
-              placeholder="Fill in the date" class="form-control" />
+            <app-datetimepicker (dateUpdate)="updateNewDate($event)"></app-datetimepicker>
           </div>
+          <!-- Send -->
           <div class="form-group">
-            <input type="submit" value="Submit" class="btn float-right login_btn">
+            <input type="submit" value="Submit" class="btn float-right login_btn" />
           </div>
         </form>
       </div>

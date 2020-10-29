@@ -6,7 +6,7 @@ import { RegisterComponent } from "./register/register.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { AuthGuard } from "./login/auth.guard";
 import { JobsComponent } from "./jobs/jobs.component";
-import { ApplicationsComponent } from "./applications/applications.component";
+import { ApplicationsComponent } from "./jobs/applications/applications.component";
 import { AddJobComponent } from "./jobs/add-job/add-job.component";
 import { AddApplicationComponent } from "./jobs/applications/add-application/add-application.component";
 
